@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery Only - jsTemplates</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<ul class="artist-list"></ul>
+<!--
+<script src="js/vendor/jquery-1.11.1.min.js"></script>
+-->
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script id="tmpl-artist" type="text/tmpl">
+	<li id="artist_0"></li>
+</script>
+<script type="text/javascript">
+
+	/* json data sample
+	data = 
+	[{"ArtistId":43,"Name":"A Cor Do Som"},{"ArtistId":230,"Name":"Aaron Copland & London Symphony Orchestra"},{"ArtistId":202,"Name":"Aaron Goldberg"},{"ArtistId":1,"Name":"AC/DC"}]
+	*/
+
+	$(function() {
+		var tmplSource = $('#tmpl-artist').html(),
+			artistTmplItem;
+
+		$.getJSON('http://responsiveresourcesgroup.com/chinook/api/artists').done(function(data) {
+			if (data) {
+
+				for(var i = 0, len = data.length; i < len; i++) {
+					
+					artistTmpl = $(tmplSource);
+
+					artistTmplItem = artistTmpl.attr('id','artist_'+data[i].ArtistId);
+
+					artistTmplItem.text(data[i].Name);
+					
+					$('ul.artist-list').append(artistTmplItem);
+
+				}
+			}
+		});
+	});
+
+</script>
+</body>
+</html>

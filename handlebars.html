@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Handlebars - jsTemplates</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<ul class="artist-list"></ul>
+<!--
+<script src="js/vendor/jquery-1.11.1.min.js"></script>
+<script src="js/vendor/handlebars-v2.0.0.js"></script>
+-->
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+<script id="tmpl-artist" type="text/tmpl">
+	{{#each this}}
+	<li data-artist-id="{{ArtistId}}">{{Name}}</li>
+	{{/each}}
+</script>
+<script type="text/javascript">
+
+	/* json data sample
+	data = 
+	[{"ArtistId":43,"Name":"A Cor Do Som"},{"ArtistId":230,"Name":"Aaron Copland & London Symphony Orchestra"},{"ArtistId":202,"Name":"Aaron Goldberg"},{"ArtistId":1,"Name":"AC/DC"}]
+	*/
+
+	$(function() {
+		var tmplSource = $('#tmpl-artist').html(),
+			template = Handlebars.compile(tmplSource);
+
+		$.getJSON('http://responsiveresourcesgroup.com/chinook/api/artists').done(function(data) {
+			if (data) {  
+				
+				$(".artist-list").html(template(data));
+			}
+		});
+	});
+
+</script>
+</body>
+</html>
