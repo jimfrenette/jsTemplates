@@ -18,7 +18,7 @@
 <script type="text/javascript">
 
 	/* json data sample
-	data = 
+	data =
 	[{"ArtistId":43,"Name":"A Cor Do Som"},{"ArtistId":230,"Name":"Aaron Copland & London Symphony Orchestra"},{"ArtistId":202,"Name":"Aaron Goldberg"},{"ArtistId":1,"Name":"AC/DC"}]
 	*/
 
@@ -26,17 +26,17 @@
 		var tmplSource = $('#tmpl-artist').html(),
 			artistTmplItem;
 
-		$.getJSON('http://responsiveresourcesgroup.com/chinook/api/artists').done(function(data) {
+		$.getJSON('http://jimfrenette.com/chinook/api/artists').done(function(data) {
 			if (data) {
 
 				for(var i = 0, len = data.length; i < len; i++) {
-					
+
 					artistTmpl = $(tmplSource);
 
 					artistTmplItem = artistTmpl.attr('id','artist_'+data[i].ArtistId);
 
 					artistTmplItem.text(data[i].Name);
-					
+
 					$('ul.artist-list').append(artistTmplItem);
 
 				}

@@ -11,7 +11,7 @@
 <script type="text/javascript">
 
 	/* json data sample
-	data = 
+	data =
 	[{"ArtistId":43,"Name":"A Cor Do Som"},{"ArtistId":230,"Name":"Aaron Copland & London Symphony Orchestra"},{"ArtistId":202,"Name":"Aaron Goldberg"},{"ArtistId":1,"Name":"AC/DC"}]
 	*/
 
@@ -32,7 +32,7 @@
 		});
 	};
 
-	getJSON('http://responsiveresourcesgroup.com/chinook/api/artists').then(function(data) {
+	getJSON('http://jimfrenette.com/chinook/api/artists').then(function(data) {
 		if (data) {
 			// getElementsByClassName returns an array,
 			// use the index [0] to get the first element match
@@ -49,7 +49,7 @@
                 li.appendChild(document.createTextNode(data[i].Name));
                 artistList.appendChild(li);
 			}
-		}	
+		}
 	});
 
 </script>
